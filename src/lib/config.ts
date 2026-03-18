@@ -4,13 +4,11 @@ export interface MenuItem {
   desc: string;
   descEn?: string;
   price: string;
-  priceSub?: string;
   category: string;
   emoji: string;
   imageUrl?: string;
   isNew?: boolean;
   isPopular?: boolean;
-  isSeason?: boolean;
 }
 
 export interface BusinessHour {
@@ -19,12 +17,6 @@ export interface BusinessHour {
   hours: string;
   hoursEn?: string;
   isHoliday?: boolean;
-}
-
-export interface AboutValue {
-  icon: string;
-  title: string;
-  desc: string;
 }
 
 const DEMO_MENU: MenuItem[] = [
@@ -123,7 +115,6 @@ const DEMO_MENU: MenuItem[] = [
     price: '₩6,500',
     category: '논커피',
     emoji: '🍓',
-    isSeason: true,
   },
   {
     name: '초콜릿',
@@ -190,7 +181,6 @@ const DEMO_MENU: MenuItem[] = [
     nameEn: 'Ethiopia Yirgacheffe',
     desc: '플로럴·베리·라임 노트, 워시드 프로세싱, 밝은 산미',
     price: '₩18,000',
-    priceSub: '200g',
     category: '원두',
     emoji: '🫘',
     imageUrl: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=120&h=120&q=80&auto=format&fit=crop',
@@ -200,7 +190,6 @@ const DEMO_MENU: MenuItem[] = [
     nameEn: 'Colombia Supremo',
     desc: '초콜릿·캐러멜·견과류 노트, 균형 잡힌 바디감',
     price: '₩16,000',
-    priceSub: '200g',
     category: '원두',
     emoji: '🫘',
   },
@@ -209,7 +198,6 @@ const DEMO_MENU: MenuItem[] = [
     nameEn: 'Guatemala Antigua',
     desc: '스모키·다크초콜릿·스파이시 노트, 풍부한 바디감',
     price: '₩17,000',
-    priceSub: '200g',
     category: '원두',
     emoji: '🫘',
   },
@@ -218,22 +206,58 @@ const DEMO_MENU: MenuItem[] = [
     nameEn: 'Brazil Santos',
     desc: '넛티·카카오·달콤한 여운, 입문용 스페셜티 추천',
     price: '₩15,000',
-    priceSub: '200g',
     category: '원두',
     emoji: '🫘',
     imageUrl: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=120&h=120&q=80&auto=format&fit=crop',
-  },
+  }
 ];
 
 const DEMO_HOURS: BusinessHour[] = [
-  { day: '월요일', dayEn: 'Monday', hours: '정기휴무', isHoliday: true },
-  { day: '화요일', dayEn: 'Tuesday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
-  { day: '수요일', dayEn: 'Wednesday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
-  { day: '목요일', dayEn: 'Thursday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
-  { day: '금요일', dayEn: 'Friday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
-  { day: '토요일', dayEn: 'Saturday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
-  { day: '일요일', dayEn: 'Sunday', hours: '09:00 – 22:00', hoursEn: '09:00 – 22:00' },
+  {
+    day: '월요일',
+    dayEn: 'Monday',
+    hours: '정기휴무',
+    isHoliday: true,
+  },
+  {
+    day: '화요일',
+    dayEn: 'Tuesday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  },
+  {
+    day: '수요일',
+    dayEn: 'Wednesday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  },
+  {
+    day: '목요일',
+    dayEn: 'Thursday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  },
+  {
+    day: '금요일',
+    dayEn: 'Friday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  },
+  {
+    day: '토요일',
+    dayEn: 'Saturday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  },
+  {
+    day: '일요일',
+    dayEn: 'Sunday',
+    hours: '09:00 – 22:00',
+    hoursEn: '09:00 – 22:00',
+  }
 ];
+
+const _basePath = process.env.NEXT_PUBLIC_REPO_NAME ? `/${process.env.NEXT_PUBLIC_REPO_NAME}` : '';
 
 function parseJSON<T>(raw: string | undefined, fallback: T): T {
   if (!raw) return fallback;
@@ -245,61 +269,28 @@ function parseJSON<T>(raw: string | undefined, fallback: T): T {
 }
 
 export const siteConfig = {
-  name: process.env.NEXT_PUBLIC_SITE_NAME || '온기 로스터리',
-  nameEn: process.env.NEXT_PUBLIC_SITE_NAME_EN || 'Ongi Roastery',
-  description:
-    process.env.NEXT_PUBLIC_DESCRIPTION ||
-    '매일 아침, 직접 로스팅한 한 잔의 커피',
-  descriptionEn:
-    process.env.NEXT_PUBLIC_DESCRIPTION_EN ||
-    'A cup of freshly roasted coffee every morning',
-  heroCategory:
-    process.env.NEXT_PUBLIC_HERO_CATEGORY ||
-    '연남동 스페셜티 커피 로스터리',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'my cafe',
+  nameEn: process.env.NEXT_PUBLIC_SITE_NAME_EN || 'my cafe',
+  description: process.env.NEXT_PUBLIC_DESCRIPTION || 'my cafe',
+  descriptionEn: process.env.NEXT_PUBLIC_DESCRIPTION_EN || 'A cup of freshly roasted coffee every morning',
   phone: process.env.NEXT_PUBLIC_PHONE || '02-338-1204',
+  primaryColor: process.env.NEXT_PUBLIC_PRIMARY_COLOR || '#8b6914',
   address: process.env.NEXT_PUBLIC_ADDRESS || '서울 마포구 연남로 23길 8',
-  addressDetail: process.env.NEXT_PUBLIC_ADDRESS_DETAIL || '(연남동)',
   addressEn: process.env.NEXT_PUBLIC_ADDRESS_EN || '8, Yeonnam-ro 23-gil, Mapo-gu, Seoul',
   kakaoMapId: process.env.NEXT_PUBLIC_KAKAO_MAP_ID || '',
-  hoursNote: process.env.NEXT_PUBLIC_HOURS_NOTE || '라스트오더 21:30 · 월요일 정기휴무',
-  businessNumber: process.env.NEXT_PUBLIC_BUSINESS_NUMBER || '123-45-67890',
-  footerTagline: process.env.NEXT_PUBLIC_FOOTER_TAGLINE || 'Specialty Coffee',
   menuItems: parseJSON<MenuItem[]>(process.env.NEXT_PUBLIC_MENU_ITEMS, DEMO_MENU),
   businessHours: parseJSON<BusinessHour[]>(process.env.NEXT_PUBLIC_BUSINESS_HOURS, DEMO_HOURS),
   galleryImages: parseJSON<string[]>(process.env.NEXT_PUBLIC_GALLERY_IMAGES, [
-    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=600&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=600&h=600&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&h=600&q=80&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=600&h=600&q=80&auto=format&fit=crop',
-  ]),
-  galleryLabels: parseJSON<string[]>(process.env.NEXT_PUBLIC_GALLERY_LABELS, [
-    '카페 인테리어',
-    '라떼아트',
-    '직접 로스팅',
-    '시그니처 디저트',
-  ]),
-  aboutStories: parseJSON<string[]>(process.env.NEXT_PUBLIC_ABOUT_STORIES, [
-    '온기 로스터리는 2019년 연남동에서 시작한 스페셜티 커피 로스터리입니다. 직접 생두를 산지에서 선별·수입하고, 매일 아침 소량씩 로스팅해 그날 가장 신선한 커피를 제공합니다.',
-    '에티오피아, 콜롬비아, 과테말라 등 다양한 산지의 원두를 직거래로 들여와 각 원두가 가진 고유한 풍미를 최대한 살린 로스팅 프로파일을 연구합니다. 커피는 단순한 음료가 아니라, 농부의 땀과 로스터의 열정이 만나는 예술이라 믿습니다.',
-  ]),
-  aboutTags: parseJSON<string[]>(process.env.NEXT_PUBLIC_ABOUT_TAGS, [
-    '#스페셜티', '#직접로스팅', '#연남동', '#산지직거래', '#싱글오리진',
-  ]),
-  aboutValues: parseJSON<AboutValue[]>(process.env.NEXT_PUBLIC_ABOUT_VALUES, [
-    { icon: '🌱', title: '산지 직거래', desc: '에티오피아·콜롬비아·과테말라 농장과 직접 계약, 공정한 거래를 지향합니다.' },
-    { icon: '🔥', title: '매일 직접 로스팅', desc: '소량 배치 로스팅으로 항상 최고 신선도의 원두를 제공합니다.' },
-    { icon: '☕', title: '커피 교육', desc: '주말 원두 테이스팅 클래스와 홈브루잉 워크숍을 정기 운영합니다.' },
-  ]),
-  transportBadges: parseJSON<string[]>(process.env.NEXT_PUBLIC_TRANSPORT_BADGES, [
-    '🚇 홍대입구역 3번 출구 도보 12분',
-    '🚌 연남동 정류장 도보 3분',
-    '🚲 따릉이 연남동 대여소 인근',
-  ]),
+  'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=600&h=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&h=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=600&h=600&q=80&auto=format&fit=crop'
+]),
   instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL || '',
   naverBlogUrl: process.env.NEXT_PUBLIC_NAVER_BLOG_URL || '',
   kakaoChannelUrl: process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || '',
-  primaryColor: process.env.NEXT_PUBLIC_PRIMARY_COLOR || '#8b6914',
-  fontFamily: process.env.NEXT_PUBLIC_FONT_FAMILY || 'Nanum Myeongjo',
+  fontFamily: 'Pretendard',
+  designPreset: 'warm-earth',
   gaId: process.env.NEXT_PUBLIC_GA_ID || null,
 };
 
