@@ -269,8 +269,8 @@ function parseJSON<T>(raw: string | undefined, fallback: T): T {
 }
 
 export const siteConfig = {
-  name: process.env.NEXT_PUBLIC_SITE_NAME || 'my cafe',
-  nameEn: process.env.NEXT_PUBLIC_SITE_NAME_EN || 'my cafe',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'my cafe223123',
+  nameEn: process.env.NEXT_PUBLIC_SITE_NAME_EN || 'my cafe34',
   description: process.env.NEXT_PUBLIC_DESCRIPTION || 'my cafe',
   descriptionEn: process.env.NEXT_PUBLIC_DESCRIPTION_EN || 'A cup of freshly roasted coffee every morning',
   phone: process.env.NEXT_PUBLIC_PHONE || '02-338-1204',
